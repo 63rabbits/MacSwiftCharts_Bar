@@ -11,7 +11,6 @@ import SwiftUI
 
 class ViewController: NSViewController {
 
-    private var contentView: NSHostingView<ContentView>!
     @State private var contentViewModel = ContentViewModel()
 
     override func viewDidAppear() {
@@ -33,14 +32,14 @@ class ViewController: NSViewController {
             .init(category: "kiwi",         value: 200),
         ]
 
-        contentView = NSHostingView(rootView: ContentView(viewModel: contentViewModel))
-        self.view.addSubview(contentView)
-        contentView.frame = .init(origin: .init(x: 0, y: 0), size: .init(width: 500, height: 400))
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.centerXAnchor.constraint(equalTo: contentView.superview!.centerXAnchor).isActive = true
-        contentView.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: contentView.superview!.widthAnchor, constant: -100).isActive = true
-        contentView.heightAnchor.constraint(equalTo: contentView.superview!.heightAnchor, constant: -100).isActive = true
+        let hostingView = NSHostingView(rootView: ContentView(viewModel: contentViewModel))
+        self.view.addSubview(hostingView)
+        hostingView.frame = .init(origin: .init(x: 0, y: 0), size: .init(width: 500, height: 400))
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
+        hostingView.centerXAnchor.constraint(equalTo: hostingView.superview!.centerXAnchor).isActive = true
+        hostingView.centerYAnchor.constraint(equalTo: hostingView.superview!.centerYAnchor).isActive = true
+        hostingView.widthAnchor.constraint(equalTo: hostingView.superview!.widthAnchor, constant: -100).isActive = true
+        hostingView.heightAnchor.constraint(equalTo: hostingView.superview!.heightAnchor, constant: -100).isActive = true
     }
 
     override var representedObject: Any? {
